@@ -689,6 +689,14 @@ git branch -D @{-1}""")}"""}()}
         """,
         arrayOverloads = false
     ),
+    SPNG(
+        "spng",
+        "org.lwjgl.util.spng",
+        """
+        TODO
+        """,
+        library = JNILibrary.create("spng")
+    ),
     SPVC(
         "spvc",
         "org.lwjgl.util.spvc",

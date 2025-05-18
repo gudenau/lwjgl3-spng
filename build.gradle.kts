@@ -241,6 +241,11 @@ enum class Artifacts(
         "A collection of libraries for shader compilation.",
         *Platforms.ALL
     ),
+    SPNG(
+        "lwjgl-spng", "LWJGL - spng bindings",
+        "TODO",
+        *Platforms.ALL
+    ),
     SPVC(
         "lwjgl-spvc", "LWJGL - SPIRV-Cross bindings",
         "A library for performing reflection on SPIR-V and disassembling SPIR-V back to high level languages.",
