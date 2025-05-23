@@ -694,7 +694,11 @@ git branch -D @{-1}""")}"""}()}
         "org.lwjgl.util.spng",
         """
         TODO
-        """
+        """,
+        library = JNILibrary.create(
+            "LibSpng",
+            libraryName = "\"lwjgl_spng\""
+        )
     ),
     SPVC(
         "spvc",

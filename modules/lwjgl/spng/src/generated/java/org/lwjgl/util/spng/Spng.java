@@ -19,7 +19,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 
 public class Spng {
 
-    static { Library.initialize(); }
+    static { LibSpng.initialize(); }
 
     public static final int
         SPNG_SPNG_IO_ERROR                 = -2,
