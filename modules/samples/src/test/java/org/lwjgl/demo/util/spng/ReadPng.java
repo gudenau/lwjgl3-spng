@@ -8,8 +8,11 @@ import org.lwjgl.*;
 import org.lwjgl.system.*;
 import org.lwjgl.util.spng.*;
 
+import javax.imageio.*;
+import java.awt.image.*;
 import java.io.*;
 import java.nio.*;
+import java.nio.file.*;
 
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.util.spng.Spng.*;
@@ -77,13 +80,38 @@ public class ReadPng {
                 throw new RuntimeException("spng_decode_image failed with " + spng_strerror(result) + " (" + result + ')');
             }
 
+            BufferedImage awt = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
+            IntBuffer ints = pixels.asIntBuffer();
+            int[] row = new int[width];
+            for(int y = 0; y < height; y++) {
+                ints.get(row);
+                for(int x = 0; x < width; x++) {
+                    int pixel = row[x];
+                    pixel = (pixel & 0xFF00FF00) | ((pixel >> 16) & 0x000000FF) | ((pixel << 16) & 0x00FF0000);
+                    row[x] = pixel;
+                }
+                awt.setRGB(0, y, width, 1, row, 0, width);
+            }
+
+            Path path = Paths.get("out.png");
+            System.out.println(path.toAbsolutePath());
+            try(OutputStream out = Files.newOutputStream(path)) {
+                ImageIO.write(awt, "png", out);
+            } catch (Throwable e) {}
+
             // Dump it to the terminal via ANSI color codes!
             for(int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     int pixel = pixels.getInt((x + y * width) * 4);
-                    int red = pixel & 0xFF;
+
+                    System.out.printf("%08X ", pixel);
+                }
+                System.out.println();
+                for (int x = 0; x < width; x++) {
+                    int pixel = pixels.getInt((x + y * width) * 4);
+                    int red   = pixel & 0xFF;
                     int green = (pixel >> 8) & 0xFF;
-                    int blue = (pixel >> 16) & 0xFF;
+                    int blue  = (pixel >> 16) & 0xFF;
 
                     System.out.printf("\u001B[48;2;%d;%d;%dm  ", red, green, blue);
                 }
