@@ -8,7 +8,7 @@ import org.lwjgl.generator.*
 import spng.*
 
 val spng = "Spng".nativeClass(Module.SPNG, prefix = "SPNG", prefixMethod = "spng_") {
-    //nativeImport("spng.h")
+    // This is pretty ugly, not sure if there is a better way to handle this.
     nativeDirective("""
 #define SPNG_USE_MINIZ
         
@@ -47,204 +47,204 @@ typedef enum spng_option spng_option;
      */
 
     EnumConstant(
-        "SPNG_IO_ERROR".enum("-2"),
-        "SPNG_IO_EOF".enum("-1"),
-        "SPNG_OK".enum("0"),
-        "SPNG_EINVAL".enum,
-        "SPNG_EMEM".enum,
-        "SPNG_EOVERFLOW".enum,
-        "SPNG_ESIGNATURE".enum,
-        "SPNG_EWIDTH".enum,
-        "SPNG_EHEIGHT".enum,
-        "SPNG_EUSER_WIDTH".enum,
-        "SPNG_EUSER_HEIGHT".enum,
-        "SPNG_EBIT_DEPTH".enum,
-        "SPNG_ECOLOR_TYPE".enum,
-        "SPNG_ECOMPRESSION_METHOD".enum,
-        "SPNG_EFILTER_METHOD".enum,
-        "SPNG_EINTERLACE_METHOD".enum,
-        "SPNG_EIHDR_SIZE".enum,
-        "SPNG_ENOIHDR".enum,
-        "SPNG_ECHUNK_POS".enum,
-        "SPNG_ECHUNK_SIZE".enum,
-        "SPNG_ECHUNK_CRC".enum,
-        "SPNG_ECHUNK_TYPE".enum,
-        "SPNG_ECHUNK_UNKNOWN_CRITICAL".enum,
-        "SPNG_EDUP_PLTE".enum,
-        "SPNG_EDUP_CHRM".enum,
-        "SPNG_EDUP_GAMA".enum,
-        "SPNG_EDUP_ICCP".enum,
-        "SPNG_EDUP_SBIT".enum,
-        "SPNG_EDUP_SRGB".enum,
-        "SPNG_EDUP_BKGD".enum,
-        "SPNG_EDUP_HIST".enum,
-        "SPNG_EDUP_TRNS".enum,
-        "SPNG_EDUP_PHYS".enum,
-        "SPNG_EDUP_TIME".enum,
-        "SPNG_EDUP_OFFS".enum,
-        "SPNG_EDUP_EXIF".enum,
-        "SPNG_ECHRM".enum,
-        "SPNG_EPLTE_IDX".enum,
-        "SPNG_ETRNS_COLOR_TYPE".enum,
-        "SPNG_ETRNS_NO_PLTE".enum,
-        "SPNG_EGAMA".enum,
-        "SPNG_EICCP_NAME".enum,
-        "SPNG_EICCP_COMPRESSION_METHOD".enum,
-        "SPNG_ESBIT".enum,
-        "SPNG_ESRGB".enum,
-        "SPNG_ETEXT".enum,
-        "SPNG_ETEXT_KEYWORD".enum,
-        "SPNG_EZTXT".enum,
-        "SPNG_EZTXT_COMPRESSION_METHOD".enum,
-        "SPNG_EITXT".enum,
-        "SPNG_EITXT_COMPRESSION_FLAG".enum,
-        "SPNG_EITXT_COMPRESSION_METHOD".enum,
-        "SPNG_EITXT_LANG_TAG".enum,
-        "SPNG_EITXT_TRANSLATED_KEY".enum,
-        "SPNG_EBKGD_NO_PLTE".enum,
-        "SPNG_EBKGD_PLTE_IDX".enum,
-        "SPNG_EHIST_NO_PLTE".enum,
-        "SPNG_EPHYS".enum,
-        "SPNG_ESPLT_NAME".enum,
-        "SPNG_ESPLT_DUP_NAME".enum,
-        "SPNG_ESPLT_DEPTH".enum,
-        "SPNG_ETIME".enum,
-        "SPNG_EOFFS".enum,
-        "SPNG_EEXIF".enum,
-        "SPNG_EIDAT_TOO_SHORT".enum,
-        "SPNG_EIDAT_STREAM".enum,
-        "SPNG_EZLIB".enum,
-        "SPNG_EFILTER".enum,
-        "SPNG_EBUFSIZ".enum,
-        "SPNG_EIO".enum,
-        "SPNG_EOF".enum,
-        "SPNG_EBUF_SET".enum,
-        "SPNG_EBADSTATE".enum,
-        "SPNG_EFMT".enum,
-        "SPNG_EFLAGS".enum,
-        "SPNG_ECHUNKAVAIL".enum,
-        "SPNG_ENCODE_ONLY".enum,
-        "SPNG_EOI".enum,
-        "SPNG_ENOPLTE".enum,
-        "SPNG_ECHUNK_LIMITS".enum,
-        "SPNG_EZLIB_INIT".enum,
-        "SPNG_ECHUNK_STDLEN".enum,
-        "SPNG_EINTERNAL".enum,
-        "SPNG_ECTXTYPE".enum,
-        "SPNG_ENOSRC".enum,
-        "SPNG_ENODST".enum,
-        "SPNG_EOPSTATE".enum,
-        "SPNG_ENOTFINAL".enum
+        "IO_ERROR".enum("-2"),
+        "IO_EOF".enum("-1"),
+        "OK".enum("0"),
+        "EINVAL".enum,
+        "EMEM".enum,
+        "EOVERFLOW".enum,
+        "ESIGNATURE".enum,
+        "EWIDTH".enum,
+        "EHEIGHT".enum,
+        "EUSER_WIDTH".enum,
+        "EUSER_HEIGHT".enum,
+        "EBIT_DEPTH".enum,
+        "ECOLOR_TYPE".enum,
+        "ECOMPRESSION_METHOD".enum,
+        "EFILTER_METHOD".enum,
+        "EINTERLACE_METHOD".enum,
+        "EIHDR_SIZE".enum,
+        "ENOIHDR".enum,
+        "ECHUNK_POS".enum,
+        "ECHUNK_SIZE".enum,
+        "ECHUNK_CRC".enum,
+        "ECHUNK_TYPE".enum,
+        "ECHUNK_UNKNOWN_CRITICAL".enum,
+        "EDUP_PLTE".enum,
+        "EDUP_CHRM".enum,
+        "EDUP_GAMA".enum,
+        "EDUP_ICCP".enum,
+        "EDUP_SBIT".enum,
+        "EDUP_SRGB".enum,
+        "EDUP_BKGD".enum,
+        "EDUP_HIST".enum,
+        "EDUP_TRNS".enum,
+        "EDUP_PHYS".enum,
+        "EDUP_TIME".enum,
+        "EDUP_OFFS".enum,
+        "EDUP_EXIF".enum,
+        "ECHRM".enum,
+        "EPLTE_IDX".enum,
+        "ETRNS_COLOR_TYPE".enum,
+        "ETRNS_NO_PLTE".enum,
+        "EGAMA".enum,
+        "EICCP_NAME".enum,
+        "EICCP_COMPRESSION_METHOD".enum,
+        "ESBIT".enum,
+        "ESRGB".enum,
+        "ETEXT".enum,
+        "ETEXT_KEYWORD".enum,
+        "EZTXT".enum,
+        "EZTXT_COMPRESSION_METHOD".enum,
+        "EITXT".enum,
+        "EITXT_COMPRESSION_FLAG".enum,
+        "EITXT_COMPRESSION_METHOD".enum,
+        "EITXT_LANG_TAG".enum,
+        "EITXT_TRANSLATED_KEY".enum,
+        "EBKGD_NO_PLTE".enum,
+        "EBKGD_PLTE_IDX".enum,
+        "EHIST_NO_PLTE".enum,
+        "EPHYS".enum,
+        "ESPLT_NAME".enum,
+        "ESPLT_DUP_NAME".enum,
+        "ESPLT_DEPTH".enum,
+        "ETIME".enum,
+        "EOFFS".enum,
+        "EEXIF".enum,
+        "EIDAT_TOO_SHORT".enum,
+        "EIDAT_STREAM".enum,
+        "EZLIB".enum,
+        "EFILTER".enum,
+        "EBUFSIZ".enum,
+        "EIO".enum,
+        "EOF".enum,
+        "EBUF_SET".enum,
+        "EBADSTATE".enum,
+        "EFMT".enum,
+        "EFLAGS".enum,
+        "ECHUNKAVAIL".enum,
+        "ENCODE_ONLY".enum,
+        "EOI".enum,
+        "ENOPLTE".enum,
+        "ECHUNK_LIMITS".enum,
+        "EZLIB_INIT".enum,
+        "ECHUNK_STDLEN".enum,
+        "EINTERNAL".enum,
+        "ECTXTYPE".enum,
+        "ENOSRC".enum,
+        "ENODST".enum,
+        "EOPSTATE".enum,
+        "ENOTFINAL".enum
     )
 
     EnumConstant(
-        "SPNG_TEXT".enum("1"),
-        "SPNG_ZTXT".enum("2"),
-        "SPNG_ITXT".enum("3")
+        "TEXT".enum("1"),
+        "ZTXT".enum("2"),
+        "ITXT".enum("3")
+    )
+
+    EnumConstantByte(
+        "COLOR_TYPE_GRAYSCALE".enumByte("0"),
+        "COLOR_TYPE_TRUECOLOR".enumByte("2"),
+        "COLOR_TYPE_INDEXED".enumByte("3"),
+        "COLOR_TYPE_GRAYSCALE_ALPHA".enumByte("4"),
+        "COLOR_TYPE_TRUECOLOR_ALPHA".enumByte("6")
+    )
+
+    EnumConstantByte(
+        "FILTER_NONE".enumByte("0"),
+        "FILTER_SUB".enumByte("1"),
+        "FILTER_UP".enumByte("2"),
+        "FILTER_AVERAGE".enumByte("3"),
+        "FILTER_PAETH".enumByte("4")
     )
 
     EnumConstant(
-        "SPNG_COLOR_TYPE_GRAYSCALE".enum("0"),
-        "SPNG_COLOR_TYPE_TRUECOLOR".enum("2"),
-        "SPNG_COLOR_TYPE_INDEXED".enum("3"),
-        "SPNG_COLOR_TYPE_GRAYSCALE_ALPHA".enum("4"),
-        "SPNG_COLOR_TYPE_TRUECOLOR_ALPHA".enum("6")
+        "DISABLE_FILTERING".enum("0"),
+        "FILTER_CHOICE_NONE".enum("8"),
+        "FILTER_CHOICE_SUB".enum("16"),
+        "FILTER_CHOICE_UP".enum("32"),
+        "FILTER_CHOICE_AVG".enum("64"),
+        "FILTER_CHOICE_PAETH".enum("128"),
+        "FILTER_CHOICE_ALL".enum("(8|16|32|64|128)")
     )
 
-    EnumConstant(
-        "SPNG_FILTER_NONE".enum("0"),
-        "SPNG_FILTER_SUB".enum("1"),
-        "SPNG_FILTER_UP".enum("2"),
-        "SPNG_FILTER_AVERAGE".enum("3"),
-        "SPNG_FILTER_PAETH".enum("4")
-    )
-
-    EnumConstant(
-        "SPNG_DISABLE_FILTERING".enum("0"),
-        "SPNG_FILTER_CHOICE_NONE".enum("8"),
-        "SPNG_FILTER_CHOICE_SUB".enum("16"),
-        "SPNG_FILTER_CHOICE_UP".enum("32"),
-        "SPNG_FILTER_CHOICE_AVG".enum("64"),
-        "SPNG_FILTER_CHOICE_PAETH".enum("128"),
-        "SPNG_FILTER_CHOICE_ALL".enum("(8|16|32|64|128)")
-    )
-
-    EnumConstant(
-        "SPNG_INTERLACE_NONE".enum("0"),
-        "SPNG_INTERLACE_ADAM7".enum("1")
+    EnumConstantByte(
+        "INTERLACE_NONE".enumByte("0"),
+        "INTERLACE_ADAM7".enumByte("1")
     )
 
 /* Channels are always in byte-order */
     EnumConstant(
-        "SPNG_FMT_RGBA8".enum("1"),
-        "SPNG_FMT_RGBA16".enum("2"),
-        "SPNG_FMT_RGB8".enum("4"),
+        "FMT_RGBA8".enum("1"),
+        "FMT_RGBA16".enum("2"),
+        "FMT_RGB8".enum("4"),
 
     /* Partially implemented, see documentation */
-        "SPNG_FMT_GA8".enum("16"),
-        "SPNG_FMT_GA16".enum("32"),
-        "SPNG_FMT_G8".enum("64"),
+        "FMT_GA8".enum("16"),
+        "FMT_GA16".enum("32"),
+        "FMT_G8".enum("64"),
 
     /* No conversion or scaling */
-        "SPNG_FMT_PNG".enum("256"),
-        "SPNG_FMT_RAW".enum("512")  /* big-endian (everything else is host-endian) */
+        "FMT_PNG".enum("256"),
+        "FMT_RAW".enum("512")  /* big-endian (everything else is host-endian) */
     )
 
     EnumConstant(
-        "SPNG_CTX_IGNORE_ADLER32".enum("1"), /* Ignore checksum in DEFLATE streams */
-        "SPNG_CTX_ENCODER".enum("2") /* Create an encoder context */
+        "CTX_IGNORE_ADLER32".enum("1"), /* Ignore checksum in DEFLATE streams */
+        "CTX_ENCODER".enum("2") /* Create an encoder context */
     )
 
     EnumConstant(
-        "SPNG_DECODE_USE_TRNS".enum("1"), /* Deprecated */
-        "SPNG_DECODE_USE_GAMA".enum("2"), /* Deprecated */
-        "SPNG_DECODE_USE_SBIT".enum("8"), /* Undocumented */
+        "DECODE_USE_TRNS".enum("1"), /* Deprecated */
+        "DECODE_USE_GAMA".enum("2"), /* Deprecated */
+        "DECODE_USE_SBIT".enum("8"), /* Undocumented */
 
-        "SPNG_DECODE_TRNS".enum("1"), /* Apply transparency */
-        "SPNG_DECODE_GAMMA".enum("2"), /* Apply gamma correction */
-        "SPNG_DECODE_PROGRESSIVE".enum("256") /* Initialize for progressive reads */
+        "DECODE_TRNS".enum("1"), /* Apply transparency */
+        "DECODE_GAMMA".enum("2"), /* Apply gamma correction */
+        "DECODE_PROGRESSIVE".enum("256") /* Initialize for progressive reads */
     )
 
     EnumConstant(
     /* Default for critical chunks */
-        "SPNG_CRC_ERROR".enum("0"),
+        "CRC_ERROR".enum("0"),
 
     /* Discard chunk, invalid for critical chunks.
        Since v0.6.2: default for ancillary chunks */
-        "SPNG_CRC_DISCARD".enum("1"),
+        "CRC_DISCARD".enum("1"),
 
     /* Ignore and don't calculate checksum.
        Since v0.6.2: also ignores checksums in DEFLATE streams */
-        "SPNG_CRC_USE".enum("2")
+        "CRC_USE".enum("2")
     )
 
     EnumConstant(
-        "SPNG_ENCODE_PROGRESSIVE".enum("1"), /* Initialize for progressive writes */
-        "SPNG_ENCODE_FINALIZE".enum("2") /* Finalize PNG after encoding image */
+        "ENCODE_PROGRESSIVE".enum("1"), /* Initialize for progressive writes */
+        "ENCODE_FINALIZE".enum("2") /* Finalize PNG after encoding image */
     )
 
     EnumConstant(
-        "SPNG_AFTER_IHDR".enum("1"),
-        "SPNG_AFTER_PLTE".enum("2"),
-        "SPNG_AFTER_IDAT".enum("8")
+        "AFTER_IHDR".enum("1"),
+        "AFTER_PLTE".enum("2"),
+        "AFTER_IDAT".enum("8")
     )
 
     EnumConstant(
-        "SPNG_KEEP_UNKNOWN_CHUNKS".enum("1"),
+        "KEEP_UNKNOWN_CHUNKS".enum("1"),
 
-        "SPNG_IMG_COMPRESSION_LEVEL".enum,
-        "SPNG_IMG_WINDOW_BITS".enum,
-        "SPNG_IMG_MEM_LEVEL".enum,
-        "SPNG_IMG_COMPRESSION_STRATEGY".enum,
+        "IMG_COMPRESSION_LEVEL".enum,
+        "IMG_WINDOW_BITS".enum,
+        "IMG_MEM_LEVEL".enum,
+        "IMG_COMPRESSION_STRATEGY".enum,
 
-        "SPNG_TEXT_COMPRESSION_LEVEL".enum,
-        "SPNG_TEXT_WINDOW_BITS".enum,
-        "SPNG_TEXT_MEM_LEVEL".enum,
-        "SPNG_TEXT_COMPRESSION_STRATEGY".enum,
+        "TEXT_COMPRESSION_LEVEL".enum,
+        "TEXT_WINDOW_BITS".enum,
+        "TEXT_MEM_LEVEL".enum,
+        "TEXT_COMPRESSION_STRATEGY".enum,
 
-        "SPNG_FILTER_CHOICE".enum,
-        "SPNG_CHUNK_COUNT_LIMIT".enum,
-        "SPNG_ENCODE_TO_BUFFER".enum,
+        "FILTER_CHOICE".enum,
+        "CHUNK_COUNT_LIMIT".enum,
+        "ENCODE_TO_BUFFER".enum,
     )
 
     spng_ctx.p(
@@ -278,7 +278,7 @@ typedef enum spng_option spng_option;
         Check(1)..spng_rw_fn.p("rw_func"),
         opaque_p("user")
     )
-    /*TODO?
+    /*TODO? This depends on FILE existing, not sure if LWJGL has that.
     int(
         "set_png_file",
 
