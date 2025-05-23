@@ -695,7 +695,7 @@ git branch -D @{-1}""")}"""}()}
         """
         TODO
         """,
-        library = JNILibrary.create("spng")
+        library = JNILibrary.create("Spng")
     ),
     SPVC(
         "spvc",
