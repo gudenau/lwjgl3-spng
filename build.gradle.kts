@@ -243,7 +243,7 @@ enum class Artifacts(
     ),
     SPNG(
         "lwjgl-spng", "LWJGL - spng bindings",
-        "TODO",
+        "libspng (simple png) is a C library for reading and writing Portable Network Graphics (PNG) format files with a focus on security and ease of use.",
         *Platforms.ALL
     ),
     SPVC(
